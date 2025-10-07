@@ -15,11 +15,14 @@ resource "proxmox_virtual_environment_vm" "vm_templates" {
   template  = true
 
   agent {
-    enabled = false
+    enabled = true
   }
 
-  # Enables UEFI firmware (needed to boot an EFI binary)
+  # Enables UEFI firmware
   bios = "ovmf"
+
+  # Use q35 machine type
+  machine = "q35"
 
   cpu {
     cores = 4
