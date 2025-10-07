@@ -18,11 +18,14 @@ resource "proxmox_virtual_environment_vm" "vm_templates" {
     enabled = true
   }
 
-  # Enables UEFI firmware
-  bios = "ovmf"
-
-  # Use q35 machine type
+  # Invoke the magical incantations to enable Secure Boot
+  bios    = "ovmf"
   machine = "q35"
+  efi_disk {
+    datastore_id      = var.datastore_vms
+    type              = "4m"                     # Recommended for Secure Boot
+    pre_enrolled_keys = each.value.vm_secureboot # Enables Secure Boot if configured for the VM image
+  }
 
   cpu {
     cores = 4
@@ -39,12 +42,6 @@ resource "proxmox_virtual_environment_vm" "vm_templates" {
     import_from  = "${var.datastore_images}:import/${each.value.image_filename}"
     interface    = "scsi0"
     size         = 32
-  }
-
-  efi_disk {
-    datastore_id      = var.datastore_vms
-    type              = "4m"   # Recommended for Secure Boot
-    pre_enrolled_keys = "true" # Enables Secure Boot
   }
 
   tpm_state {
