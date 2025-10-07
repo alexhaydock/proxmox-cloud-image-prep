@@ -33,7 +33,7 @@ resource "proxmox_virtual_environment_vm" "vm_templates" {
 
   disk {
     datastore_id = var.datastore_vms
-    import_from  = "${var.datastore_images}:${each.value.image_filename}"
+    import_from  = "${var.datastore_images}:import/${each.value.image_filename}"
     interface    = "scsi0"
   }
 
