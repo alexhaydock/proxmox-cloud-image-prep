@@ -20,8 +20,9 @@ You must provide at least `pve_url` and `pve_node_name`. You may also override t
 
 ### `yournode.tfvars`
 ```terraform
-pve_url="https://pvenode.yourdomain.com:8006"
-pve_node_name="yournodename"
+pve_node_name = "yournodename"
+pve_url       = "https://yournode.example.com:8006"
+template_vlan = "190"
 ```
 
 ## Running with your variables
