@@ -20,7 +20,7 @@ variable "pve_url" {
   type        = string
 }
 
-variable "template_password" {
+variable "template_pass" {
   description = "Password to set for template VM user"
   type        = string
   default     = "correct horse battery staple"

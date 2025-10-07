@@ -65,7 +65,7 @@ resource "proxmox_virtual_environment_vm" "vm_templates" {
     }
 
     user_account {
-      password = var.template_password
+      password = var.template_pass
       username = var.template_user
     }
   }

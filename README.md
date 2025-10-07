@@ -22,6 +22,8 @@ You must provide at least `pve_url` and `pve_node_name`. You may also override t
 ```terraform
 pve_node_name = "yournodename"
 pve_url       = "https://yournode.example.com:8006"
+template_pass = "correct horse battery staple"
+template_user = "user"
 template_vlan = "190"
 ```
 
