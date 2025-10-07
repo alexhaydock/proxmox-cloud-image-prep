@@ -39,3 +39,8 @@ This means we can update all images like this:
 ```sh
 tofu destroy --var-file="yournode.tfvars" && tofu apply --var-file="yournode.tfvars"
 ```
+
+## Why are Ubuntu/Debian not included in the default imagelist?
+Canonical do not ship the QEMU Guest Agent in their cloud images, and [don't seem to have qcow2-based images](https://cloud-images.ubuntu.com/releases/noble/release/).
+
+Debian do not ship the Agent either, and [explain their reasoning here](https://wiki.debian.org/Cloud#Why_isn.27t_the_qemu-guest-agent_package_pre-installed_in_the_cloud_images.3F).
