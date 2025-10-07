@@ -24,7 +24,7 @@ pve_node_name = "yournodename"
 pve_url       = "https://yournode.example.com:8006"
 template_pass = "correct horse battery staple"
 template_user = "user"
-template_vlan = "190"
+template_vlan = "100"
 ```
 
 ## Running with your variables
