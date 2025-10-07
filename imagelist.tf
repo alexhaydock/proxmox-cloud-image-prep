@@ -15,17 +15,17 @@ variable "imagelist" {
       vm_secureboot  = "true"
     }
     fedora42 = {
-      vm_id          = 1001
-      vm_name        = "fedora42"
       image_filename = "Fedora-Cloud-Base-Generic-42-1.1.x86_64.qcow2"
       image_url      = "https://ask4.mm.fcix.net/fedora/linux/releases/42/Cloud/x86_64/images/Fedora-Cloud-Base-Generic-42-1.1.x86_64.qcow2"
+      vm_id          = 1001
+      vm_name        = "fedora42"
       vm_secureboot  = "true"
     }
     ubuntu2404 = {
-      vm_id          = 1002
-      vm_name        = "ubuntu2404"
       image_filename = "ubuntu-24.04-server-cloudimg-amd64.qcow2" # Renames file to qcow2 for import
       image_url      = "https://cloud-images.ubuntu.com/releases/noble/release/ubuntu-24.04-server-cloudimg-amd64.img"
+      vm_id          = 1002
+      vm_name        = "ubuntu2404"
       vm_secureboot  = "true"
     }
   }
