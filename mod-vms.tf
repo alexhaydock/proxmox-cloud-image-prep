@@ -35,6 +35,7 @@ resource "proxmox_virtual_environment_vm" "vm_templates" {
     datastore_id = var.datastore_vms
     import_from  = "${var.datastore_images}:import/${each.value.image_filename}"
     interface    = "scsi0"
+    size         = 32
   }
 
   efi_disk {
