@@ -1,11 +1,11 @@
 resource "proxmox_virtual_environment_vm" "vm_templates" {
-  depends_on = [proxmox_virtual_environment_download_file.images]
+  depends_on = [proxmox_virtual_environment_download_file.vm_images]
 
   name = each.value.vm_name
   tags = ["template"]
 
-  # Loop over values in imagelist.tf
-  for_each = var.imagelist
+  # Loop over values in vm_imagelist.tf
+  for_each = var.vm_imagelist
 
   # Specify node to deploy to, VMID and auto-boot status
   node_name = var.pve_node_name

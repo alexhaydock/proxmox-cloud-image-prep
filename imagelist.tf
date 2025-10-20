@@ -1,4 +1,21 @@
-variable "imagelist" {
+variable "lxc_imagelist" {
+  type = map(object({
+    image_filename = string
+    image_url      = string
+  }))
+  default = {
+    centos9 = {
+      image_filename = "centos-9-stream-default_20240828_amd64.tar.xz"
+      image_url      = "http://download.proxmox.com/images/system/centos-9-stream-default_20240828_amd64.tar.xz"
+    }
+    fedora42 = {
+      image_filename = "fedora-42-default_20250428_amd64.tar.xz"
+      image_url      = "http://download.proxmox.com/images/system/fedora-42-default_20250428_amd64.tar.xz"
+    }
+  }
+}
+
+variable "vm_imagelist" {
   type = map(object({
     image_filename = string
     image_url      = string
