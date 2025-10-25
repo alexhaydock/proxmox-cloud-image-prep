@@ -54,18 +54,11 @@ resource "proxmox_virtual_environment_vm" "vm_templates_windows" {
   }
 
   operating_system {
-    type = "l26" # Linux 2.6+
+    type = "win11"
   }
 
-  # Attach a VirtIO RNG to the VM
-  # We seemingly need to be "root@pam" to do this
-  rng {
-    source = "/dev/urandom"
-  }
-
-  # Attach a serial device and use it as our console output
-  serial_device {}
+  # Use VirtIO for video output
   vga {
-    type = "serial0"
+    type = "virtio"
   }
 }
