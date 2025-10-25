@@ -1,7 +1,7 @@
 resource "proxmox_virtual_environment_vm" "vm_templates_windows" {
   depends_on = [proxmox_virtual_environment_file.vm_images_windows]
 
-  name = "Win11-25H2"
+  name = "win11-25h2"
   tags = ["template"]
 
   # Loop over values in tf-imagelist.tf
@@ -41,7 +41,7 @@ resource "proxmox_virtual_environment_vm" "vm_templates_windows" {
     datastore_id = var.datastore_vms
     import_from  = "${var.datastore_images}:import/${each.value.image_filename}"
     interface    = "scsi0"
-    size         = 32
+    size         = 64
   }
 
   tpm_state {
