@@ -3,7 +3,7 @@
 Terraform project to prep Proxmox with a set of upstream cloud images ready to clone and use.
 
 ## Image definitions
-Images are defined in `imagelist.tf` as a set of variables. These are fed to `mod-images.tf` and `mod-vms.tf` which will download the images, and configure template VMs each of them.
+Images are defined in `tf-imagelist.tf` as a set of variables. These are fed to `mod-linux-images.tf` and `mod-linux-vms.tf` which will download the images, and configure template VMs each of them.
 
 ## Authentication
 Provide Proxmox auth credentials to the shell/Terraform process [as described in the Proxmox provider documentation](https://registry.terraform.io/providers/bpg/proxmox/latest/docs#authentication).
@@ -15,8 +15,18 @@ We need to configure the local file-based datastore (called `local` by default) 
 * Storage > `local` > Edit
 * In "Content", add "Import" to the list of enabled content types
 
+## Building/disabling Windows images
+To build the Windows images for this project, you can clone my [packer-windows-qemu-ssh](https://github.com/alexhaydock/packer-windows-qemu-ssh) into a directory alongside this project and run the `packer build` command listed in the README.
+
+Alternatively, simply `rm mod-win*` from this directory to disable the Windows image support.
+
+## Copying Windows images notes
+Copying Windows images to the Proxmox node uses the `proxmox_virtual_environment_file` resource, which will attempt to connect to the Proxmox node via SSH. Ensure that you have the ability to do this as the `root@pam` user.
+
+Without this ability, the code could be reworked to use `proxmox_virtual_environment_download_file` to download the file _from_ our orchestration host instead. I've avoided this complexity as it requires spinning up a webserver to host our Windows qcow2 file for the Proxmox server to pull.
+
 ## Providing variables
-You must provide at least `pve_url` and `pve_node_name`. You may also override the default values of any other variables defined in `variables.tf`.
+You must provide at least `pve_url` and `pve_node_name`. You may also override the default values of any other variables defined in `tf-vars.tf`.
 
 ### `yournode.tfvars`
 ```terraform

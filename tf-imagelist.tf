@@ -15,7 +15,7 @@ variable "lxc_imagelist" {
   }
 }
 
-variable "vm_imagelist" {
+variable "linux_vm_imagelist" {
   type = map(object({
     image_filename = string
     image_url      = string
@@ -36,6 +36,27 @@ variable "vm_imagelist" {
       image_url      = "https://ask4.mm.fcix.net/fedora/linux/releases/42/Cloud/x86_64/images/Fedora-Cloud-Base-Generic-42-1.1.x86_64.qcow2"
       vm_id          = 1001
       vm_name        = "fedora42"
+      vm_secureboot  = "true"
+    }
+  }
+}
+
+variable "windows_vm_imagelist" {
+  type = map(object({
+    # Path specifies the *local* path to the Windows qcow2 files
+    # to be copied to the remote Proxmox instance
+    image_filename = string
+    path           = string
+    vm_id          = number
+    vm_name        = string
+    vm_secureboot  = string
+  }))
+  default = {
+    win11-25h2 = {
+      image_filename = "win11_25h2.qcow2"
+      path           = "../packer-windows-qemu-ssh/output-win11_25h2/win11_25h2.qcow2"
+      vm_id          = 1002
+      vm_name        = "win11-25h2"
       vm_secureboot  = "true"
     }
   }
