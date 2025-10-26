@@ -37,6 +37,7 @@ resource "proxmox_virtual_environment_vm" "vm_templates_windows" {
     floating  = 8192 # enable ballooning device as per Proxmox docs' recommendation
   }
 
+  boot_order = ["scsi0"]
   disk {
     datastore_id = var.datastore_vms
     import_from  = "${var.datastore_images}:import/${each.value.image_filename}"
