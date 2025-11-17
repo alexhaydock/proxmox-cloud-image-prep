@@ -1,16 +1,23 @@
+# Here, we import the "Cloud" versions of relevant images, so we can
+# post-provision them using cloud-init and SSH. The "Default" versions
+# do not ship SSH or cloud-init.
 variable "lxc_imagelist" {
   type = map(object({
     image_filename = string
     image_url      = string
   }))
   default = {
-    centos9 = {
-      image_filename = "centos-9-stream-default_20240828_amd64.tar.xz"
-      image_url      = "http://download.proxmox.com/images/system/centos-9-stream-default_20240828_amd64.tar.xz"
+    alpine322 = {
+      image_filename = "alpine-3.22.tar.xz"
+      image_url      = "https://images.linuxcontainers.org/images/alpine/3.22/amd64/cloud/20251116_13:00/rootfs.tar.xz"
     }
-    fedora42 = {
-      image_filename = "fedora-42-default_20250428_amd64.tar.xz"
-      image_url      = "http://download.proxmox.com/images/system/fedora-42-default_20250428_amd64.tar.xz"
+    centos10 = {
+      image_filename = "centos-10.tar.xz"
+      image_url      = "https://images.linuxcontainers.org/images/centos/10-Stream/amd64/cloud/20251116_07:08/rootfs.tar.xz"
+    }
+    fedora43 = {
+      image_filename = "fedora-43.tar.xz"
+      image_url      = "https://images.linuxcontainers.org/images/fedora/43/amd64/cloud/20251116_20:33/rootfs.tar.xz"
     }
   }
 }
@@ -24,23 +31,25 @@ variable "linux_vm_imagelist" {
     vm_secureboot  = string
   }))
   default = {
-    centos9 = {
-      image_filename = "CentOS-Stream-GenericCloud-x86_64-9-latest.x86_64.qcow2"
-      image_url      = "https://cloud.centos.org/centos/9-stream/x86_64/images/CentOS-Stream-GenericCloud-x86_64-9-latest.x86_64.qcow2"
+    centos10 = {
+      image_filename = "CentOS-Stream-GenericCloud-10-latest.x86_64.qcow2"
+      image_url      = "https://cloud.centos.org/centos/10-stream/x86_64/images/CentOS-Stream-GenericCloud-10-latest.x86_64.qcow2"
       vm_id          = 1000
-      vm_name        = "centos9"
+      vm_name        = "centos10"
       vm_secureboot  = "true"
     }
-    fedora42 = {
-      image_filename = "Fedora-Cloud-Base-Generic-42-1.1.x86_64.qcow2"
-      image_url      = "https://ask4.mm.fcix.net/fedora/linux/releases/42/Cloud/x86_64/images/Fedora-Cloud-Base-Generic-42-1.1.x86_64.qcow2"
+    fedora43 = {
+      image_filename = "Fedora-Cloud-Base-Generic-43-1.6.x86_64.qcow2"
+      image_url      = "https://ask4.mm.fcix.net/fedora/linux/releases/43/Cloud/x86_64/images/Fedora-Cloud-Base-Generic-43-1.6.x86_64.qcow2"
       vm_id          = 1001
-      vm_name        = "fedora42"
+      vm_name        = "fedora43"
       vm_secureboot  = "true"
     }
   }
 }
 
+# To build the Windows image used here, please see my `packer-windows-qemu-ssh` project:
+#   https://github.com/alexhaydock/packer-windows-qemu-ssh
 variable "windows_vm_imagelist" {
   type = map(object({
     # Path specifies the *local* path to the Windows qcow2 files

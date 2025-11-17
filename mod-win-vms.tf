@@ -19,6 +19,9 @@ resource "proxmox_virtual_environment_vm" "vm_templates_windows" {
   }
 
   # Invoke the magical incantations to enable Secure Boot
+  #
+  # This works even on Win 11 25H2+ images now that my patch has been merged upstream:
+  #   https://git.proxmox.com/?p=pve-edk2-firmware.git;a=blob;f=debian/patches/OvmfPkg-Expand-EnrollDefaultKeys-with-Microsoft-2023.patch;h=2d0fcd2bcc2605fda5a376d232e93ed171eaa785;hb=714c8a05662580d4553e045b3c404b614dc1ac27
   bios    = "ovmf"
   machine = "q35"
   efi_disk {
