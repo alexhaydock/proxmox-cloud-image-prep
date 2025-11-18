@@ -31,17 +31,24 @@ variable "linux_vm_imagelist" {
     vm_secureboot  = string
   }))
   default = {
+    alpine322 = {
+      image_filename = "generic_alpine-3.22.2-x86_64-uefi-cloudinit-r0.qcow2"
+      image_url      = "https://dl-cdn.alpinelinux.org/alpine/v3.22/releases/cloud/generic_alpine-3.22.2-x86_64-uefi-cloudinit-r0.qcow2"
+      vm_id          = 1010
+      vm_name        = "alpine322"
+      vm_secureboot  = "false"
+    }
     centos10 = {
       image_filename = "CentOS-Stream-GenericCloud-10-latest.x86_64.qcow2"
       image_url      = "https://cloud.centos.org/centos/10-stream/x86_64/images/CentOS-Stream-GenericCloud-10-latest.x86_64.qcow2"
-      vm_id          = 1000
+      vm_id          = 1020
       vm_name        = "centos10"
       vm_secureboot  = "true"
     }
     fedora43 = {
       image_filename = "Fedora-Cloud-Base-Generic-43-1.6.x86_64.qcow2"
       image_url      = "https://ask4.mm.fcix.net/fedora/linux/releases/43/Cloud/x86_64/images/Fedora-Cloud-Base-Generic-43-1.6.x86_64.qcow2"
-      vm_id          = 1001
+      vm_id          = 1030
       vm_name        = "fedora43"
       vm_secureboot  = "true"
     }
@@ -64,7 +71,7 @@ variable "windows_vm_imagelist" {
     win11-25h2 = {
       image_filename = "win11_25h2.qcow2"
       path           = "../packer-windows-qemu-ssh/output-win11_25h2/win11_25h2.qcow2"
-      vm_id          = 1002
+      vm_id          = 1110
       vm_name        = "win11-25h2"
       vm_secureboot  = "true"
     }
